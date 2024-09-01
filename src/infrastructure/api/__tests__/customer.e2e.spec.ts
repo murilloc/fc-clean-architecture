@@ -3,6 +3,7 @@ import request from "supertest";
 
 describe("E2E test for customer", () => {
     beforeEach(async () => {
+        // recreate schema for each test
         await sequelize.sync({force: true});
     });
 

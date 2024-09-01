@@ -41,21 +41,21 @@ describe("Test list product use case", () => {
         const input = {};
 
         const output = await useCase.execute(input);
-        expect(output.Products.length).toBe(3);
+        expect(output.products.length).toBe(3);
 
-        expect(output.Products[0].id).toBe(product1.id);
-        expect(output.Products[0].name).toBe(product1.name);
-        expect(output.Products[0].price).toBe(product1.price);
-
-
-        expect(output.Products[1].id).toBe(product2.id);
-        expect(output.Products[1].name).toBe(product2.name);
-        expect(output.Products[1].price).toBe(product2.price);
+        expect(output.products[0].id).toBe(product1.id);
+        expect(output.products[0].name).toBe(product1.name);
+        expect(output.products[0].price).toBe(product1.price);
 
 
-        expect(output.Products[2].id).toBe(product3.id);
-        expect(output.Products[2].name).toBe(product3.name);
-        expect(output.Products[2].price).toBe(product3.price);
+        expect(output.products[1].id).toBe(product2.id);
+        expect(output.products[1].name).toBe(product2.name);
+        expect(output.products[1].price).toBe(product2.price);
+
+
+        expect(output.products[2].id).toBe(product3.id);
+        expect(output.products[2].name).toBe(product3.name);
+        expect(output.products[2].price).toBe(product3.price);
 
 
     });
@@ -67,6 +67,6 @@ describe("Test list product use case", () => {
         const input = {};
 
         const output = await useCase.execute(input);
-        expect(output.Products.length).toBe(0);
+        expect(output.products.length).toBe(0);
     });
 });

@@ -22,13 +22,13 @@ describe("Unit Test list product use case", () => {
 
         const output = await useCase.execute({});
 
-        expect(output.Products.length).toBe(2);
-        expect(output.Products[0].id).toBe(product1.id);
-        expect(output.Products[0].name).toBe(product1.name);
-        expect(output.Products[0].price).toBe(product1.price);
-        expect(output.Products[1].id).toBe(product2.id);
-        expect(output.Products[1].name).toBe(product2.name);
-        expect(output.Products[1].price).toBe(product2.price);
+        expect(output.products.length).toBe(2);
+        expect(output.products[0].id).toBe(product1.id);
+        expect(output.products[0].name).toBe(product1.name);
+        expect(output.products[0].price).toBe(product1.price);
+        expect(output.products[1].id).toBe(product2.id);
+        expect(output.products[1].name).toBe(product2.name);
+        expect(output.products[1].price).toBe(product2.price);
 
     });
 
@@ -39,7 +39,7 @@ describe("Unit Test list product use case", () => {
         productRepository.findAll.mockReturnValue(Promise.resolve([]));
 
         const result = await useCase.execute({});
-        expect(result).toEqual({Products: []});
+        expect(result).toEqual({products: []});
 
     });
 });
