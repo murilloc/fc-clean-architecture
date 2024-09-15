@@ -12,6 +12,9 @@ export default class UpdateProductUseCase {
 
     async execute(input: InputUpdateProductDto): Promise<OutputUpdateProductDto> {
 
+        if (!input.name) {
+            throw new Error("Name is required");
+        }
         const product = await this.productRepository.find(input.id);
         product.changeName(input.name);
         product.changePrice(input.price)
