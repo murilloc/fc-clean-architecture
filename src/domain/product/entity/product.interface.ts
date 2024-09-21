@@ -1,4 +1,4 @@
-export default interface ProductInterface {
+export default interface ProductInterface  {
     get id(): string;
 
     get name(): string;
