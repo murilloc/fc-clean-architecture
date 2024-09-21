@@ -50,13 +50,13 @@ describe("Unit test create product use case", () => {
         inputA.name = "";
 
         await expect(productCreateUseCase.execute(inputA)).rejects.toThrow(
-            "Name is required"
+            "product: Name is required"
         );
 
         inputB.name = "";
 
         await expect(productCreateUseCase.execute(inputB)).rejects.toThrow(
-            "Name is required"
+            "productB: Name is required"
         );
     });
 
@@ -68,14 +68,35 @@ describe("Unit test create product use case", () => {
         inputA.price = -1;
 
         await expect(productCreateUseCase.execute(inputA)).rejects.toThrow(
-            "Price must be greater than zero"
+            "product: Price must be greater than zero"
         );
 
         inputB.name = "Product b";
         inputB.price = -1;
 
         await expect(productCreateUseCase.execute(inputB)).rejects.toThrow(
-            "Price must be greater than zero"
+            "productB: Price must be greater than zero"
+        );
+    });
+
+    it("should thrown an error when type is invalid", async () => {
+        const productRepository = MockRepository();
+        const productCreateUseCase = new CreateProductUseCase(productRepository);
+
+        inputA.name = "Product a";
+        inputA.price = 10;
+        inputA.type = "c";
+
+        await expect(productCreateUseCase.execute(inputA)).rejects.toThrow(
+            "Product type not supported"
+        );
+
+        inputB.name = "Product b";
+        inputB.price = 20;
+        inputB.type = "d";
+
+        await expect(productCreateUseCase.execute(inputB)).rejects.toThrow(
+            "Product type not supported"
         );
     });
 });

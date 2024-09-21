@@ -62,13 +62,43 @@ describe("Test create product use case", () => {
         inputA.name = "";
 
         await expect(productCreateUseCase.execute(inputA)).rejects.toThrow(
-            "Name is required"
+            "product: Name is required"
         );
 
         inputB.name = "";
 
         await expect(productCreateUseCase.execute(inputB)).rejects.toThrow(
-            "Name is required"
+            "productB: Name is required"
+        );
+    });
+
+    it("should thrown an error when price is negative", async () => {
+        const productRepository = new ProductRepository();
+        const productCreateUseCase = new CreateProductUseCase(productRepository);
+
+        inputA.name = "Product a";
+        inputA.price = -1;
+
+        await expect(productCreateUseCase.execute(inputA)).rejects.toThrow(
+            "product: Price must be greater than zero"
+        );
+
+        inputB.name = "Product b";
+        inputB.price = -1;
+
+        await expect(productCreateUseCase.execute(inputB)).rejects.toThrow(
+            "productB: Price must be greater than zero"
+        );
+    });
+
+    it("should thrown an error when type is invalid", async () => {
+        const productRepository = new ProductRepository();
+        const productCreateUseCase = new CreateProductUseCase(productRepository);
+
+        inputA.type = "c";
+
+        await expect(productCreateUseCase.execute(inputA)).rejects.toThrow(
+            "Product type not supported"
         );
     });
 });
